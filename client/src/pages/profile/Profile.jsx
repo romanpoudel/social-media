@@ -1,0 +1,43 @@
+import Feed from "../../components/feed/Feed";
+import Rightbar from "../../components/rightbar/Rightbar";
+import Sidebar from "../../components/sidebar/Sidebar";
+import TopBar from "../../components/topbar/TopBar";
+
+const Profile = () => {
+	return (
+		<div>
+			<TopBar />
+			<div className="profile flex">
+				<Sidebar />
+				<div className="profileRight basis-9/12">
+					<div className="profileRightTop">
+						<div className="profileCover h-80 relative">
+							<img
+								src="assets/post/3.jpeg"
+								alt=""
+								className="profileCoverImg w-full h-64 object-cover"
+							/>
+							<img
+								src="assets/person/7.jpeg"
+								alt=""
+								className="profileUserImg w-36 h-36 object-cover absolute right-0 left-0 top-40 mx-auto rounded-full border-solid border-4 border-white"
+							/>
+						</div>
+						<div className="profileInfo flex flex-col items-center justify-center">
+							<h4 className="profileInfoName text-2xl font-bold">Roman Poudel</h4>
+							<h4 className="profileInfoDesc font-light">
+								Hello my friends
+							</h4>
+						</div>
+					</div>
+					<div className="profileRightBottom  flex">
+						<Feed />
+						<Rightbar profile/>
+					</div>
+				</div>
+			</div>
+		</div>
+	);
+};
+
+export default Profile;

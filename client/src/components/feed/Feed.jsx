@@ -1,19 +1,16 @@
 import Post from "../post/Post";
 import Share from "../share/Share";
+import {Posts} from "../../dummyData";
 
 const Feed = () => {
 	return (
-		<div className="basis-6/12  h-[calc(100vh-48px)]">
+		<div className="flex-1">
 			<div className="p-5">
 				<Share />
-				<Post />
-				<Post />
-				<Post />
-				<Post />
-				<Post />
-				<Post />
-				<Post />
-				<Post />
+				{Posts.map((p) => (
+					<Post key={p.id} post={p} />
+				))
+				}
 			</div>
 		</div>
 	);

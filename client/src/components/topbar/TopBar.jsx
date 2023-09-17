@@ -5,7 +5,7 @@ import NotificationsIcon from "@mui/icons-material/Notifications";
 
 const TopBar = () => {
 	return (
-		<div className="topbarContainer h-12 w-full bg-blue-500 flex items-center sticky top-0">
+		<div className="topbarContainer h-12 w-full bg-blue-500 flex items-center sticky top-0 z-50">
 			<div className="topbarLeft basis-3/12 text-2xl ml-5 font-bold text-white">
 				<span className="cursor-pointer">Social</span>
 			</div>

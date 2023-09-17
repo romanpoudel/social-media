@@ -7,11 +7,13 @@ import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import WorkOutlineIcon from "@mui/icons-material/WorkOutline";
 import EventIcon from "@mui/icons-material/Event";
 import SchoolIcon from "@mui/icons-material/School";
+import CloseFriend from "../../closeFriend/CloseFriend";
+import { Users } from "../../dummyData";
 
 const Sidebar = () => {
 	return (
-		<div className="basis-3/12 h-[calc(100vh-48px)] overflow-y-scroll p-5">
-			<div>
+		<div className="basis-3/12 h-[calc(100vh-48px)] overflow-y-scroll sticky top-12">
+			<div className="p-5">
 				<ul className="p-0 m-0 list-none">
 					<li className="flex items-center mb-5">
 						<RssFeedIcon />
@@ -53,54 +55,9 @@ const Sidebar = () => {
 				<button className="border-none w-36 p-2.5 rounded-md font-medium bg-gray-200">Show More</button>
 				<hr className="my-5 mx-0"/>
 				<ul className="m-0 p-0 list-none">
-					<li className="flex items-center mb-4">
-						<img src="/assets/person/2.jpeg" alt="" className="w-8 h-8 rounded-full object-cover mr-2.5"/>
-						<span>Jane Doe</span>
-					</li>
-                    <li className="flex items-center mb-4">
-						<img src="/assets/person/2.jpeg" alt="" className="w-8 h-8 rounded-full object-cover mr-2.5"/>
-						<span>Jane Doe</span>
-					</li>
-                    <li className="flex items-center mb-4">
-						<img src="/assets/person/2.jpeg" alt="" className="w-8 h-8 rounded-full object-cover mr-2.5"/>
-						<span>Jane Doe</span>
-					</li>
-                    <li className="flex items-center mb-4">
-						<img src="/assets/person/2.jpeg" alt="" className="w-8 h-8 rounded-full object-cover mr-2.5"/>
-						<span>Jane Doe</span>
-					</li>
-                    <li className="flex items-center mb-4">
-						<img src="/assets/person/2.jpeg" alt="" className="w-8 h-8 rounded-full object-cover mr-2.5"/>
-						<span>Jane Doe</span>
-					</li>
-                    <li className="flex items-center mb-4">
-						<img src="/assets/person/2.jpeg" alt="" className="w-8 h-8 rounded-full object-cover mr-2.5"/>
-						<span>Jane Doe</span>
-					</li>
-                    <li className="flex items-center mb-4">
-						<img src="/assets/person/2.jpeg" alt="" className="w-8 h-8 rounded-full object-cover mr-2.5"/>
-						<span>Jane Doe</span>
-					</li>
-                    <li className="flex items-center mb-4">
-						<img src="/assets/person/2.jpeg" alt="" className="w-8 h-8 rounded-full object-cover mr-2.5"/>
-						<span>Jane Doe</span>
-					</li>
-                    <li className="flex items-center mb-4">
-						<img src="/assets/person/2.jpeg" alt="" className="w-8 h-8 rounded-full object-cover mr-2.5"/>
-						<span>Jane Doe</span>
-					</li>
-                    <li className="flex items-center mb-4">
-						<img src="/assets/person/2.jpeg" alt="" className="w-8 h-8 rounded-full object-cover mr-2.5"/>
-						<span>Jane Doe</span>
-					</li>
-                    <li className="flex items-center mb-4">
-						<img src="/assets/person/2.jpeg" alt="" className="w-8 h-8 rounded-full object-cover mr-2.5"/>
-						<span>Jane Doe</span>
-					</li>
-                    <li className="flex items-center mb-4">
-						<img src="/assets/person/2.jpeg" alt="" className="w-8 h-8 rounded-full object-cover mr-2.5"/>
-						<span>Jane Doe</span>
-					</li>
+					{Users.map((u) => (
+						<CloseFriend key={u.id} user={u} />
+					))}
 				</ul>
 			</div>
 		</div>

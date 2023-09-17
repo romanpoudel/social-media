@@ -7,7 +7,7 @@ const Home = () => {
 	return (
 		<div className="w-full">
 			<TopBar />
-			<div className="flex w-full ">
+			<div className="flex w-full">
 				<Sidebar />
 				<Feed />
 				<Rightbar />
