@@ -3,6 +3,8 @@ import Online from "../online/Online";
 import PropTypes from "prop-types";
 
 const Rightbar = ({ profile }) => {
+	const PF=import.meta.env.VITE_PUBLIC_PATH;
+	console.log(PF)
 	const HomeRightbar = () => {
 		return (
 			<>
@@ -54,7 +56,7 @@ const Rightbar = ({ profile }) => {
 				<div className="rightbarFollowings flex flex-wrap justify-between">
 					<div className="rightbarFollowing flex flex-col mb-5 cursor-pointer">
 						<img
-							src="assets/person/1.jpeg"
+							src={`${PF}assets/person/1.jpeg`}
 							alt=""
 							className="rightbarFollowingImg object-cover w-24 h-24 rounded-md"
 						/>
@@ -64,7 +66,7 @@ const Rightbar = ({ profile }) => {
 					</div>
 					<div className="rightbarFollowing flex flex-col mb-5 cursor-pointer">
 						<img
-							src="assets/person/2.jpeg"
+							src={`${PF}assets/person/2.jpeg`}
 							alt=""
 							className="rightbarFollowingImg object-cover w-24 h-24 rounded-md"
 						/>
@@ -74,7 +76,7 @@ const Rightbar = ({ profile }) => {
 					</div>
 					<div className="rightbarFollowing flex flex-col mb-5 cursor-pointer">
 						<img
-							src="assets/person/3.jpeg"
+							src={`${PF}assets/person/3.jpeg`}
 							alt=""
 							className="rightbarFollowingImg object-cover w-24 h-24 rounded-md"
 						/>
@@ -84,7 +86,7 @@ const Rightbar = ({ profile }) => {
 					</div>
 					<div className="rightbarFollowing flex flex-col mb-5 cursor-pointer">
 						<img
-							src="assets/person/4.jpeg"
+							src={`${PF}assets/person/4.jpeg`}
 							alt=""
 							className="rightbarFollowingImg object-cover w-24 h-24 rounded-md"
 						/>
@@ -94,7 +96,7 @@ const Rightbar = ({ profile }) => {
 					</div>
 					<div className="rightbarFollowing flex flex-col mb-5 cursor-pointer">
 						<img
-							src="assets/person/5.jpeg"
+							src={`${PF}assets/person/5.jpeg`}
 							alt=""
 							className="rightbarFollowingImg object-cover w-24 h-24 rounded-md"
 						/>
@@ -104,7 +106,7 @@ const Rightbar = ({ profile }) => {
 					</div>
 					<div className="rightbarFollowing flex flex-col mb-5 cursor-pointer">
 						<img
-							src="assets/person/6.jpeg"
+							src={`${PF}assets/person/6.jpeg`}
 							alt=""
 							className="rightbarFollowingImg object-cover w-24 h-24 rounded-md"
 						/>

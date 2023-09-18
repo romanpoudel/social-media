@@ -1,17 +1,20 @@
 import "./App.css";
-// import Login from "./pages/login/Login";
-// import Register from "./pages/register/Register";
+import Login from "./pages/login/Login";
+import Register from "./pages/register/Register";
 import Home from "./pages/home/Home";
-// import Profile from "./pages/home/profile/Profile";
+import Profile from "./pages/profile/Profile";
+import { BrowserRouter,Routes,Route } from "react-router-dom";
 
 function App() {
 	return (
-		<>
-			<Home />
-			{/* <Profile /> */}
-			{/* <Login /> */}
-			{/* <Register /> */}
-		</>
+		<BrowserRouter>
+		<Routes>
+			<Route path="/" element={<Home />} />
+			<Route path="/profile/:username" element={<Profile />} />
+			<Route path="/login" element={<Login />} />
+			<Route path="/register" element={<Register />} />
+		</Routes>
+		</BrowserRouter>
 	);
 }
 

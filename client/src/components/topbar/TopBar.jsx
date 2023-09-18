@@ -2,12 +2,15 @@ import SearchIcon from "@mui/icons-material/Search";
 import PersonIcon from "@mui/icons-material/Person";
 import ChatIcon from "@mui/icons-material/Chat";
 import NotificationsIcon from "@mui/icons-material/Notifications";
+import { Link } from "react-router-dom";
 
 const TopBar = () => {
 	return (
 		<div className="topbarContainer h-12 w-full bg-blue-500 flex items-center sticky top-0 z-50">
 			<div className="topbarLeft basis-3/12 text-2xl ml-5 font-bold text-white">
+				<Link to="/">
 				<span className="cursor-pointer">Social</span>
+				</Link>
 			</div>
 			<div className="topbarCenter basis-5/12">
 				<div className="w-full h-8 bg-white rounded-full flex items-center">
