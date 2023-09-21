@@ -24,7 +24,7 @@ app.use(morgan("common"));
 
 //routes
 app.get("/", (req, res) => {
-    res.send("Welcome to homepage");
+    res.send("Welcome to social api");
 })
 app.use("/api/users", userRoute)
 app.use("/api/auth", authRoute)

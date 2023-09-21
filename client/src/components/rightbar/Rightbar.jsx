@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 
 const Rightbar = ({ profile }) => {
 	const PF=import.meta.env.VITE_PUBLIC_PATH;
-	console.log(PF)
+	// console.log(PF)
 	const HomeRightbar = () => {
 		return (
 			<>
