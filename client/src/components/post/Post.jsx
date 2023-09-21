@@ -3,14 +3,14 @@ import PropTypes from "prop-types";
 // import { Users } from "../../dummyData";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import {format} from "timeago.js";
+import { format } from "timeago.js";
 import { Link } from "react-router-dom";
 
 const Post = ({ post }) => {
 	const [like, setLike] = useState(post.likes.length);
 	const [isLiked, setIsLiked] = useState(false);
 	const [user, setUser] = useState({});
-
+	const PF = import.meta.env.VITE_PUBLIC_PATH;
 
 	useEffect(() => {
 		const fetchUser = async () => {
@@ -29,21 +29,22 @@ const Post = ({ post }) => {
 			<div className="postWrapper p-2.5">
 				<div className="postTop flex items-center justify-between">
 					<div className="postTopLeft flex items-center">
-                        <Link to={`profile/${user.username}`}>
-						<img
-							src={
-								user.profilePicture || "assets/person/noAvatar.jpg"
-							}
-							alt=""
-							className="w-8 h-8 object-cover rounded-full"
-						/>
-                        </Link>
+						<Link to={`profile/${user.username}`}>
+							<img
+								src={
+									user.profilePicture ||
+									`${PF}assets/person/noAvatar.jpg`
+								}
+								alt=""
+								className="w-8 h-8 object-cover rounded-full"
+							/>
+						</Link>
 						<span className="postUsername text-sm font-medium my-0 mx-2.5">
-							{
-								user.username 
-							}
+							{user.username}
 						</span>
-						<span className="postDate text-xs">{format(post.createdAt)}</span>
+						<span className="postDate text-xs">
+							{format(post.createdAt)}
+						</span>
 					</div>
 					<div className="postTopRight">
 						<MoreVertIcon />
@@ -52,7 +53,7 @@ const Post = ({ post }) => {
 				<div className="postCenter my-5 mx-0">
 					<span className="postText">{post?.desc}</span>
 					<img
-						src={ post?.img || "assets/post/1.jpeg"}
+						src={post?.img || `${PF}assets/post/1.jpeg`}
 						alt=""
 						className="mt-5 w-full max-h-[500px] object-contain"
 					/>
@@ -60,13 +61,13 @@ const Post = ({ post }) => {
 				<div className="postBottom flex items-center justify-between">
 					<div className="postButtomLeft flex items-center">
 						<img
-							src="assets/like.png"
+							src={`${PF}assets/like.png`}
 							alt=""
 							onClick={likeHandler}
 							className="cursor-pointer mr-1 w-6 h-6"
 						/>
 						<img
-							src="assets/heart.png"
+							src={`${PF}assets/heart.png`}
 							alt=""
 							onClick={likeHandler}
 							className="cursor-pointer mr-1 w-6 h-6"
