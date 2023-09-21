@@ -29,11 +29,11 @@ const Post = ({ post }) => {
 			<div className="postWrapper p-2.5">
 				<div className="postTop flex items-center justify-between">
 					<div className="postTopLeft flex items-center">
-						<Link to={`profile/${user.username}`}>
+						<Link to={`/profile/${user.username}`}>
 							<img
 								src={
 									user.profilePicture ||
-									`${PF}assets/person/noAvatar.jpg`
+									`${PF}assets/person/noAvatar.png`
 								}
 								alt=""
 								className="w-8 h-8 object-cover rounded-full"

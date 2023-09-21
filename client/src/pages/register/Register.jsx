@@ -1,3 +1,5 @@
+import { Link} from "react-router-dom";
+
 const Register = () => {
 	return (
 		<div className="login w-[100vw] h-[100vh] bg-gray-100 flex items-center justify-center">
@@ -31,9 +33,11 @@ const Register = () => {
 						<button className="loginButton h-12 rounded-lg border-none bg-blue-600 text-white text-xl font-medium cursor-pointer">
 							Sign Up
 						</button>
-						<button className="loginRegisterButton h-12 rounded-lg border-none bg-green-600 text-white text-xl font-medium cursor-pointer">
-							Log into Account
-						</button>
+						<Link to="/login" className="w-full">
+							<button className="loginRegisterButton w-full h-12 rounded-lg border-none bg-green-600 text-white text-xl font-medium cursor-pointer">
+								Log into Account
+							</button>
+						</Link>
 					</div>
 				</div>
 			</div>

@@ -27,12 +27,12 @@ const Profile = () => {
 					<div className="profileRightTop">
 						<div className="profileCover h-80 relative">
 							<img
-								src={`${PF}assets/post/3.jpeg`}
+								src={user.coverPicture || `${PF}assets/person/noCover.png`}
 								alt=""
 								className="profileCoverImg w-full h-64 object-cover"
 							/>
 							<img
-								src={`${PF}assets/person/7.jpeg`}
+								src={user.profilePicture || `${PF}assets/person/noAvatar.png`}
 								alt=""
 								className="profileUserImg w-36 h-36 object-cover absolute right-0 left-0 top-40 mx-auto rounded-full border-solid border-4 border-white"
 							/>
@@ -46,7 +46,7 @@ const Profile = () => {
 					</div>
 					<div className="profileRightBottom  flex">
 						<Feed username={username}/>
-						<Rightbar profile/>
+						<Rightbar user={user}/>
 					</div>
 				</div>
 			</div>

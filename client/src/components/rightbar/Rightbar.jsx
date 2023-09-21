@@ -2,7 +2,7 @@ import { Users } from "../../dummyData";
 import Online from "../online/Online";
 import PropTypes from "prop-types";
 
-const Rightbar = ({ profile }) => {
+const Rightbar = ({ user }) => {
 	const PF=import.meta.env.VITE_PUBLIC_PATH;
 	// console.log(PF)
 	const HomeRightbar = () => {
@@ -41,15 +41,15 @@ const Rightbar = ({ profile }) => {
 				<div className="rightbarInfo mb-7">
 					<div className="rightbarInfoItem mb-1.5">
 						<span className="rightbarInfoKey mr-3.5 font-medium text-gray-500">City:</span>
-						<span className="rightbarInfoValue font-light">New York</span>
+						<span className="rightbarInfoValue font-light">{user.city}</span>
 					</div>
 					<div className="rightbarInfoItem mb-1.5">
 						<span className="rightbarInfoKey mr-3.5 font-medium text-gray-500">From:</span>
-						<span className="rightbarInfoValue font-light">Madrid</span>
+						<span className="rightbarInfoValue font-light">{user.from}</span>
 					</div>
 					<div className="rightbarInfoItem mb-1.5">
 						<span className="rightbarInfoKey mr-3.5 font-medium text-gray-500">Relationship:</span>
-						<span className="rightbarInfoValue font-light">Single</span>
+						<span className="rightbarInfoValue font-light">{user.relationship===1?"Single":user.relationship===2?"Married":"-"}</span>
 					</div>
 				</div>
 				<h4 className="rightbarTitle mb-5 font-semibold text-lg">User friends</h4>
@@ -121,14 +121,14 @@ const Rightbar = ({ profile }) => {
 	return (
 		<div className="rightbar basis-3/12 h-[calc(100vh-48px)] [&::-webkit-scrollbar]:hidden overflow-y-scroll sticky top-12">
 			<div className="rightbarWrapper p-5">
-				{profile ? <ProfileRightbar /> : <HomeRightbar />}
+				{user ? <ProfileRightbar /> : <HomeRightbar />}
 			</div>
 		</div>
 	);
 };
 
 Rightbar.propTypes = {
-	profile: PropTypes.bool,
+	user: PropTypes.object,
 };
 
 export default Rightbar;

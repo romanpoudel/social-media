@@ -28,7 +28,7 @@ const Feed = ({ username }) => {
 		<div className="flex-1">
 			<div className="p-5">
 				<Share />
-				{posts.map((p) => (
+				{posts.length===0?<h3 className="mt-6 text-center">No posts to show</h3>:posts.map((p) => (
 					<Post key={p._id} post={p} />
 				))}
 			</div>
