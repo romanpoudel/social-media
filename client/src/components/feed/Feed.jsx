@@ -1,12 +1,14 @@
 import Post from "../post/Post";
 import Share from "../share/Share";
 // import {Posts} from "../../dummyData";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import PropTypes from "prop-types";
+import { AuthContext } from "../../context/AuthContext";
 
 const Feed = ({ username }) => {
 	const [posts, setPosts] = useState([]);
+	const {user}=useContext(AuthContext)
 
 	useEffect(() => {
 		const fetchPosts = async () => {
@@ -14,7 +16,7 @@ const Feed = ({ username }) => {
 				const res = username
 					? await axios.get("/api/posts/profile/"+username)
 					: await axios.get(
-							"/api/posts/timeline/650419f271be9a6a9effd761"
+							"/api/posts/timeline/"+user._id
 					);
 				setPosts(res.data);
 			} catch (err) {
@@ -22,7 +24,7 @@ const Feed = ({ username }) => {
 			}
 		};
 		fetchPosts();
-	}, [username]);
+	}, [username,user._id]);
 	console.log(posts);
 	return (
 		<div className="flex-1">
