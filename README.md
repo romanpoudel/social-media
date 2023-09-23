@@ -33,4 +33,9 @@ Start the server
 ```bash
   yarn start
 ```
+## Screenshots
+#### Home
+![App Screenshot](https://github.com/romanpoudel/social-media/blob/main/Screenshot%202023-09-23%20175028.png?raw=true)
 
+#### Profile
+![App Screenshot](https://github.com/romanpoudel/social-media/blob/main/Screenshot%202023-09-23%20175038.png?raw=true)
