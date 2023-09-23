@@ -32,7 +32,7 @@ const Feed = ({ username }) => {
 	return (
 		<div className="flex-1">
 			<div className="p-5">
-				{username=== user.username && <Share />}
+				{(!username || username=== user.username) && <Share />}
 				{posts.length === 0 ? (
 					<h3 className="mt-6 text-center">No posts to show</h3>
 				) : (

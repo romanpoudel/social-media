@@ -5,6 +5,7 @@ import EmojiEmotionsIcon from "@mui/icons-material/EmojiEmotions";
 import { useContext, useRef, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import axios from "axios";
+import CancelIcon from "@mui/icons-material/Cancel";
 
 const Share = () => {
 	const { user } = useContext(AuthContext);
@@ -38,7 +39,7 @@ const Share = () => {
 		}
 	}
 	return (
-		<div className="share w-full h-36 rounded-xl shadow-2xl">
+		<div className="share w-full  rounded-xl shadow-2xl">
 			<div className="shareWrapper p-2.5">
 				<div className="shareTop flex items-center">
 					<img
@@ -59,7 +60,21 @@ const Share = () => {
 				</div>
 			</div>
 			<hr className="shareHr mx-5 my-2" />
-			<form className="shareBottom flex items-center justify-between" onSubmit={submitHandler}>
+			{file && (
+				<div className="shareImgContainer relative px-5 pt-0 pb-2.5">
+					<img
+						src={URL.createObjectURL(file)}
+						alt=""
+						className="shareImg w-full h-full object-cover rounded-xl"
+					/>
+					<CancelIcon
+						className="shareCancelImg absolute top-2 right-7 opacity-80 hover:opacity-100 text-red-500 cursor-pointer"
+						onClick={() => setFile(null)}
+					/>
+				</div>
+			)
+			}
+			<form className="shareBottom flex items-center justify-between pb-3" onSubmit={submitHandler}>
 				<div className="shareOptions flex ml-5">
 					<label
 						htmlFor="file"

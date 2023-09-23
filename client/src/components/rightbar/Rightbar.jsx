@@ -1,13 +1,23 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Users } from "../../dummyData";
 import Online from "../online/Online";
 import PropTypes from "prop-types";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../context/AuthContext";
+import AddIcon from "@mui/icons-material/Add";
+import RemoveIcon from "@mui/icons-material/Remove";
 
 const Rightbar = ({ user }) => {
 	const PF = import.meta.env.VITE_PUBLIC_PATH;
 	const [friends, setFriends] = useState([]);
+	const { user: currentUser ,dispatch} = useContext(AuthContext);
+	const [followed, setFollowed] = useState(currentUser.followings.includes(user?._id));
+
+	useEffect(() => {
+		setFollowed(currentUser.followings.includes(user?._id));
+	}, [currentUser, user?._id]);
+
 	useEffect(() => {
 		const getFriends = async () => {
 			try {
@@ -22,8 +32,27 @@ const Rightbar = ({ user }) => {
 			}
 		};
 		getFriends();
-	}, [user?._id]);
-	console.log("user:", user?._id);
+	}, [user]);
+
+
+	const handleClick = async () => {
+		try {
+			if (followed) {
+				await axios.put(`/api/users/${user._id}/unfollow`, {
+					userId: currentUser._id,
+				});
+				dispatch({type:"UNFOLLOW",payload:user._id})
+			} else {
+				await axios.put(`/api/users/${user._id}/follow`, {
+					userId: currentUser._id,
+				});
+				dispatch({type:"FOLLOW",payload:user._id})
+			}
+		} catch (err) {
+			console.log(err);
+		}
+		setFollowed(!followed);
+	};
 	const HomeRightbar = () => {
 		return (
 			<>
@@ -56,6 +85,22 @@ const Rightbar = ({ user }) => {
 	const ProfileRightbar = () => {
 		return (
 			<>
+				{user.username !== currentUser.username && (
+					<button
+						className="bg-blue-500 text-white rounded-md px-5 py-2.5 font-semibold text-sm mb-5"
+						onClick={handleClick}
+					>
+						{followed ? (
+							<>
+								<RemoveIcon className="mr-2.5" /> Unfollow
+							</>
+						) : (
+							<>
+								<AddIcon className="mr-2.5" /> Follow
+							</>
+						)}
+					</button>
+				)}
 				<h4 className="rightbarTitle mb-5 font-semibold text-lg">
 					User information
 				</h4>
@@ -94,13 +139,16 @@ const Rightbar = ({ user }) => {
 				</h4>
 				<div className="rightbarFollowings flex flex-wrap justify-between">
 					{friends.map((friend) => (
-						<Link key={friend._id} to={"/profile/"+friend.username}>
+						<Link
+							key={friend._id}
+							to={"/profile/" + friend.username}
+						>
 							<div className="rightbarFollowing flex flex-col mb-5 cursor-pointer">
 								<img
 									crossOrigin="anonymous"
 									src={
 										friend.profilePicture
-											? PF +"assets/" +friend.profilePicture
+											? `${PF}assets/${friend.profilePicture}`
 											: `${PF}assets/person/noAvatar.png`
 									}
 									alt=""
