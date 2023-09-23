@@ -9,7 +9,7 @@ const authRoute = require("./routes/auth");
 const postRoute = require("./routes/posts");
 const multer = require("multer");
 const path = require("path");
-// const cors = require("cors");
+const cors = require("cors");
 
 mongoose.connect(process.env.MONGODB_URL, { useNewUrlParser: true }).then(
 	() => {
@@ -21,8 +21,17 @@ mongoose.connect(process.env.MONGODB_URL, { useNewUrlParser: true }).then(
 );
 
 //middlewares
+app.use(
+	cors({
+		origin: "*",
+	})
+);
 app.use(express.json());
-app.use(helmet());
+app.use(
+	helmet({
+		crossOriginResourcePolicy: false,
+	})
+);
 app.use(morgan("common"));
 app.use("/assets", express.static(path.join(__dirname, "public/assets")));
 
@@ -37,7 +46,7 @@ const storage = multer.diskStorage({
 		cb(null, "public/assets");
 	},
 	filename: function (req, file, cb) {
-		cb(null, file.originalname);
+		cb(null, Date.now() +file.originalname);
 	},
 });
 
@@ -53,7 +62,6 @@ app.post("/api/upload", upload.single("file"), (req, res) => {
 		console.log(err);
 	}
 });
-
 
 app.use("/api/users", userRoute);
 app.use("/api/auth", authRoute);

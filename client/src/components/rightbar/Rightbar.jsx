@@ -10,7 +10,7 @@ const Rightbar = ({ user }) => {
 			<>
 				<div className="birthdatContainer flex items-center">
 					<img
-						src="assets/gift.png"
+						src={`${PF}assets/gift.png`}
 						className="birthdayImg w-10 h-10 mr-2.5"
 						alt=""
 					/>
@@ -20,7 +20,7 @@ const Rightbar = ({ user }) => {
 					</span>
 				</div>
 				<img
-					src="assets/ad.png"
+					src={`${PF}assets/ad.png`}
 					className="rightbarAd w-full rounded-lg my-7 mx-0"
 					alt=""
 				/>

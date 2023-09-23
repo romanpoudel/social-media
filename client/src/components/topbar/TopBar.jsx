@@ -3,12 +3,12 @@ import PersonIcon from "@mui/icons-material/Person";
 import ChatIcon from "@mui/icons-material/Chat";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import { Link } from "react-router-dom";
-import {AuthContext} from "../../context/AuthContext";
+import { AuthContext } from "../../context/AuthContext";
 import { useContext } from "react";
 
 const TopBar = () => {
 	const PF = import.meta.env.VITE_PUBLIC_PATH;
-	const {user} = useContext(AuthContext)
+	const { user } = useContext(AuthContext);
 	return (
 		<div className="topbarContainer h-12 w-full bg-blue-500 flex items-center sticky top-0 z-50">
 			<div className="topbarLeft basis-3/12 text-2xl ml-5 font-bold text-white">
@@ -64,7 +64,11 @@ const TopBar = () => {
 				<div className="w-8 h-8">
 					<Link to={`/profile/${user.username}`}>
 						<img
-							src={user.profilePicture ||`${PF}assets/person/noAvatar.png`}
+							crossOrigin="anonymous"
+							src={
+								user.profilePicture ||
+								`${PF}assets/person/noAvatar.png`
+							}
 							alt=""
 							className="w-full h-full rounded-full object-cover cursor-pointer"
 						/>

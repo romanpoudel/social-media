@@ -44,6 +44,7 @@ const Post = ({ post }) => {
 					<div className="postTopLeft flex items-center">
 						<Link to={`/profile/${user.username}`}>
 							<img
+								crossOrigin="anonymous"
 								src={
 									user.profilePicture ||
 									`${PF}assets/person/noAvatar.png`
@@ -66,7 +67,11 @@ const Post = ({ post }) => {
 				<div className="postCenter my-5 mx-0">
 					<span className="postText">{post?.desc}</span>
 					<img
-						src={post?.img || `${PF}assets/post/1.jpeg`}
+						src={
+							post.img
+								? PF + "assets/" + post.img
+								: `${PF}assets/post/1.jpeg`
+						}
 						alt=""
 						className="mt-5 w-full max-h-[500px] object-contain"
 					/>

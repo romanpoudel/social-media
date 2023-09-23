@@ -7,7 +7,7 @@ import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import WorkOutlineIcon from "@mui/icons-material/WorkOutline";
 import EventIcon from "@mui/icons-material/Event";
 import SchoolIcon from "@mui/icons-material/School";
-import CloseFriend from "../../closeFriend/CloseFriend";
+import CloseFriend from "../closeFriend/CloseFriend";
 import { Users } from "../../dummyData";
 
 const Sidebar = () => {

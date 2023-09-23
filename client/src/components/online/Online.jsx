@@ -1,11 +1,12 @@
 import PropTypes from "prop-types";
 
 const Online = ({user}) => {
+	const PF=import.meta.env.VITE_PUBLIC_PATH;
 	return (
 		<li className="rightbarFriend flex items-center mb-3.5">
 			<div className="rightbarProfileImgContainer mr-2.5 relative">
 				<img
-					src={user.profilePicture}
+					src={PF+user.profilePicture}
 					className="rightbarProfileImg w-10 h-10 rounded-full object-cover"
 					alt=""
 				/>
