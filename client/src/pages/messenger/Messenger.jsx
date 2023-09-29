@@ -2,8 +2,25 @@ import TopBar from "../../components/topbar/TopBar";
 import Covnersation from "../../components/conversations/Coversation";
 import Message from "../../components/message/Message";
 import ChatOnline from "../../components/chatOnline/ChatOnline";
+import { AuthContext } from "../../context/AuthContext";
+import { useContext, useEffect, useState } from "react";
+import axios from "axios";
 
 const Messenger = () => {
+	const [conversations, setConversations] = useState([]);
+	const {user} = useContext(AuthContext);
+	
+	useEffect(() => {
+		const getConversations = async () => {
+			try {
+				const res = await axios.get("/api/conversations/" + user._id);
+				setConversations(res.data);
+			} catch (err) {
+				console.log(err);
+			}
+		};
+		getConversations();
+	}, [user._id]);
 	return (
 		<>
 			<TopBar />
@@ -15,10 +32,12 @@ const Messenger = () => {
 							placeholder="Search for friends"
 							className="chatMenuInput w-90/100 py-2.5 px-0  border-b  border-gray-500 "
 						/>
-						<Covnersation />
-						<Covnersation />
-						<Covnersation />
-						<Covnersation />
+						{conversations.map((c) => (
+							<div key={c._id}>
+								<Covnersation conversation={c} currentUser={user}/>
+							</div>
+						))}
+						
 					</div>
 				</div>
 				<div className="chatBox  basis-6/12">
