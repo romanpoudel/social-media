@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
+import {format} from "timeago.js" 
 
-const Message = ({ own }) => {
+const Message = ({ message,own }) => {
 	return (
 		<div
 			className={
@@ -20,19 +21,16 @@ const Message = ({ own }) => {
 							: "bg-gray-100 text-black max-w-xs p-2.5 rounded-3xl"
 					}
 				>
-					Lorem ipsum dolor sit amet consectetur adipisicing elit.
-					Reiciendis inventore veniam ratione officiis nesciunt ad
-					voluptates rem nam reprehenderit facilis pariatur
-					perferendis, eveniet voluptas, ut eaque illo earum hic
-					voluptatibus?
+					{message.text}
 				</p>
 			</div>
-			<div className="messageBottom text-xs mt-2.5">1 hour ago</div>
+			<div className="messageBottom text-xs mt-2.5">{format(message.createdAt)}</div>
 		</div>
 	);
 };
 
 Message.propTypes = {
+	message: PropTypes.string,
 	own: PropTypes.bool,
 };
 
