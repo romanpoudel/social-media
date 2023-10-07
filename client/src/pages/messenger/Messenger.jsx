@@ -5,15 +5,42 @@ import ChatOnline from "../../components/chatOnline/ChatOnline";
 import { AuthContext } from "../../context/AuthContext";
 import { useContext, useEffect, useRef, useState } from "react";
 import axios from "axios";
+import { io } from "socket.io-client";
 
 const Messenger = () => {
 	const [conversations, setConversations] = useState([]);
 	const [currentChat, setCurrentChat] = useState(null);
 	const [messages, setMessages] = useState([]);
 	const [newMessage, setNewMessage] = useState("");
+	const [arrivalMessage, setArrivalMessage] = useState(null);
+	const [onlineUsers, setOnlineUsers] = useState([]);
+	const socket = useRef();
 	const { user } = useContext(AuthContext);
 	const scrollRef = useRef();
 
+	useEffect(() => {
+		socket.current = io("ws://localhost:8900");
+		socket.current.on("getMessage", (data) => {
+			setArrivalMessage({
+				sender: data.senderId,
+				text: data.text,
+				createdAt: Date.now(),
+			});
+		});
+	}, []);
+
+	useEffect(() => {
+		arrivalMessage &&
+			currentChat?.members.includes(arrivalMessage.sender) &&
+			setMessages((prev) => [...prev, arrivalMessage]);
+	}, [arrivalMessage, currentChat]);
+
+	useEffect(() => {
+		socket.current.emit("addUser", user._id);
+		socket.current.on("getUsers", (users) => {
+			setOnlineUsers(user.followings.filter((f) => users.some((u) => u.userId === f)));
+		});
+	}, [user]);
 	useEffect(() => {
 		const getConversations = async () => {
 			try {
@@ -48,6 +75,15 @@ const Messenger = () => {
 			conversationId: currentChat._id,
 		};
 
+		const receiverId = currentChat.members.find(
+			(member) => member !== user._id
+		);
+		socket.current.emit("sendMessage", {
+			senderId: user._id,
+			receiverId,
+			text: newMessage,
+		});
+
 		try {
 			const res = await axios.post("/api/messages", message);
 			setMessages([...messages, res.data]);
@@ -57,9 +93,9 @@ const Messenger = () => {
 		}
 	};
 
-	useEffect(()=>{
-		scrollRef.current?.scrollIntoView({behavior:"smooth"})
-	},[messages])
+	useEffect(() => {
+		scrollRef.current?.scrollIntoView({ behavior: "smooth" });
+	}, [messages]);
 	return (
 		<>
 			<TopBar />
@@ -121,9 +157,7 @@ const Messenger = () => {
 				</div>
 				<div className="chatOnline basis-3/12">
 					<div className="chatOnlineWrapper mt-5 pl-2">
-						<ChatOnline />
-						<ChatOnline />
-						<ChatOnline />
+						<ChatOnline onlineUsers={onlineUsers} currentId={user._id} setCurrentChat={setCurrentChat} />
 					</div>
 				</div>
 			</div>
